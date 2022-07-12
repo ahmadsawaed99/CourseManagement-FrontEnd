@@ -1,0 +1,57 @@
+<div>
+  <div class="subscribe-popup">
+
+    <div class="text-center">
+      <h2>Edit My Profile</h2>
+    </div>
+    <div *ngIf="isError" class="text-center text-danger">
+      <h3>{{errorMessage}}</h3>
+
+    </div>
+
+    <form [formGroup]="addStudentForm" (ngSubmit)="onSubmit()">
+
+      <!-- first name -->
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input formControlName="firstName" id="firstName" type="text" class="form-control">
+      </div>
+      <div *ngIf="firstName.touched && firstName.invalid" class="text-danger" style="margin-top:-12px; margin-left: 5px; margin-bottom: 10px;">{{invalidFirstNameMessage()}}</div>
+
+            <!-- last name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input formControlName="lastName" id="lastName" type="text" class="form-control">
+      </div>
+      <div *ngIf="lastName.touched && lastName.invalid" class="text-danger" style="margin-top:-12px; margin-left: 5px; margin-bottom: 10px;">{{invalidLastNameMessage()}}</div>
+
+            <!-- adress -->
+      <div class="form-group">
+        <label for="adress">Adress</label>
+        <input formControlName="adress" id="adress" type="text" class="form-control">
+      </div>
+      <div *ngIf="adress.touched && adress.invalid" class="text-danger" style="margin-top:-12px; margin-left: 5px; margin-bottom: 10px;">{{invalidAdress()}}</div>
+
+            <!-- email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="email" class="form-control">
+      </div>
+      <div *ngIf="email.touched && (email.invalid )" class="text-danger" style="margin-top:-12px; margin-left: 5px; margin-bottom: 10px;">{{invalidEmail()}}</div>
+            <!-- confirm Email-->
+      <div class="form-group">
+        <label for="confirmEmail">Confirm Email</label>
+        <input formControlName="confirmEmail" id="confirmEmail" type="email" class="form-control">
+      </div>
+      <div *ngIf="confirmEmail.touched && (confirmEmail.invalid || addStudentForm.errors?.['emailNotRepeated'])" class="text-danger" style="margin-top:-12px; margin-left: 5px; margin-bottom: 10px;">{{invalidConfirmEmail()}}</div>
+
+
+            <!-- Submit -->
+      <div>
+        <button type="button" class="btn btn-primary justify-content-center" (click)="onSubmit()"  [disabled]="addStudentForm.invalid">Submit</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>

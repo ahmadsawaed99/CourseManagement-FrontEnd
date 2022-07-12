@@ -1,0 +1,55 @@
+.add-course-popup{
+  width: 65%;
+  display: grid;
+  min-height: 40rem;
+  max-height: 46rem;
+  background-color: white;
+  margin: auto;
+  margin-top: 2rem;
+  border-radius: 2rem;
+  padding: 20px;
+  box-sizing: content-box;
+}
+
+.add-course-form{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1.5fr 0.5fr ;
+  box-sizing: content-box;
+
+}
+.input-label{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 1rem;
+  align-items: center;
+}
+.day-toggle{
+  display: grid;
+  margin: 1.3rem;
+  width: 100%;
+  grid-template-columns: 1fr 2fr;
+  justify-content: center;
+}
+.days-list{
+  grid-template-rows: 8fr; align-items: center;text-align: center;
+}
+.select-hour-form{
+  grid-template-rows: 8fr; align-items: center;text-align: center;
+}
+.select-hour-label{
+  margin: 1.25rem;
+}
+select{
+  width: 65%;
+  border-radius: 1rem;
+  padding: 0.13rem;
+  text-justify: auto;
+}
+.disabled-select{
+  pointer-events: none;
+  background-color: rgb(212, 212, 212);
+}

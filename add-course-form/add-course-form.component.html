@@ -1,0 +1,100 @@
+<div class="add-course-popup" style="color: #19165c;">
+<div style="width: 100%;">
+  <div class="popup-header" style="width: 100%;" >
+    <div (click)="onExit()">
+      <mat-icon (click)="onExit()" >clear</mat-icon>
+    </div>
+    <div class="text-center">
+      <h1 style="font-weight: bold;">New Course</h1>
+    </div>
+  </div>
+  <div>
+    <form class="add-course-form" [formGroup]="addCourseForm">
+      <div class="input-label">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Course Name</mat-label>
+          <input matInput placeholder="Angular" formControlName="courseName">
+        </mat-form-field>
+        <div *ngIf="isCourseInDb" class="text-danger" style="font-weight:bold;">This course already exist.</div>
+
+
+      </div>
+    <div class="input-label" >
+      <mat-form-field class="example-full-width" appearance="fill" (click)="onSelectStartDate()">
+        <mat-label>Starting Date</mat-label>
+        <input matInput [matDatepicker]="startDate" [readonly]="true" formControlName="startDate" [value]="minStartDate" [min]="minStartDate" [max]="maxStartDate">
+        <mat-datepicker-toggle matSuffix [for]="startDate"  ></mat-datepicker-toggle>
+        <mat-datepicker #startDate (closed)="onSelectStartDate()" (viewChanged)="onSelectStartDate()" >a</mat-datepicker>
+      </mat-form-field>
+      <div class="text-center">
+        <h2 style="font-weight: bold; color: #5b56b7;">Add Classes</h2>
+      </div>
+    </div>
+    <div class="input-label">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Ending Date</mat-label>
+        <input matInput [matDatepicker]="endDate" [readonly]="true" placeholder="start date" formControlName="endDate" [min]="minEndDate" [disabled]="checkStartDateValue()">
+        <mat-datepicker-toggle matSuffix [for]="endDate"  ></mat-datepicker-toggle>
+        <mat-datepicker #endDate>a</mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+    <div class="days-list">
+
+      <div class="text-center">
+        <h4 style="font-weight: bold;">Days</h4>
+      </div>
+
+      <div *ngFor="let day of Days" class="day-toggle">
+        <mat-slide-toggle class="example-margin" color="primary"  style="direction: rtl;" formControlName="{{day.day}}" ></mat-slide-toggle>
+        <div class="text-left">{{day.day}}</div>
+      </div>
+
+    </div>
+
+    <!-- Start Hour -->
+    <div class="select-hour-form">
+
+      <div class="text-center">
+        <h4 style="font-weight: bold;">Start Hour</h4>
+      </div>
+
+      <div *ngFor="let day of Days" class="select-hour-label" style="text-align: center;">
+        <select (change)="onSelectStartHour($event,day.day + 'StartHour')" formControlName="{{day.day + 'StartHour'}}" [ngClass]="addCourseForm.get(day.day).value? '':'disabled-select'">
+          <option value="" *ngIf="!addCourseForm.get(day.day).value" selected></option>
+          <option value="" selected >Select</option>
+          <option value="{{hour.value}}" *ngFor="let hour of Hours">{{hour.hour}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- End Hour -->
+    <div class="select-hour-form">
+
+      <div class="text-center">
+        <h4 style="font-weight: bold;">End Hour</h4>
+      </div>
+
+      <div *ngFor="let day of Days" class="select-hour-label" style="text-align: center;">
+        <select    formControlName="{{day.day + 'EndHour'}}" [ngClass]="(addCourseForm.get(day.day + 'StartHour').value !== '') ?'':'disabled-select'">
+          <option value="" *ngIf="!addCourseForm.get(day.day).value" selected></option>
+          <option value="" selected >Select</option>
+          <option  value="{{hour.value}}" *ngFor="let hour of EndHourArray(day.day)">{{hour.hour}}</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div></div>
+
+    <div style="text-align: center; margin: auto;" (click)="onSubmit()" >
+      <button class="btn btn-primary" style="width: 10rem; margin-top: 1rem;">Submit</button>
+    </div>
+
+    </form>
+  </div>
+</div>
+
+
+</div>
+

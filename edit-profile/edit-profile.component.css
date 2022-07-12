@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  margin-top: 6rem;
+}
+.subscribe-popup{
+
+  width: 30rem;
+  min-height: 40rem;
+  max-height: 47rem;
+  background-color: white;
+  margin: auto;
+  margin-top: 3rem;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: content-box;
+}
+input{
+  margin-bottom: 15px;
+}
+
+/* form{
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(9,1fr);
+} */
